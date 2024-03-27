@@ -2,7 +2,7 @@ use std::time::Duration;
 use std::{fs, thread};
 use std::net::{TcpListener, TcpStream};
 use std::io::prelude::*;
-use threadpool::ThreadPool;
+use http_rs::ThreadPool;
 
 fn handle_connection(mut stream: TcpStream) {
     let mut buffer: [u8; 1024] = [0; 1024];
