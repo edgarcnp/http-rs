@@ -37,7 +37,7 @@ impl ThreadPool {
 
     pub fn execute<F>(&self, f:F) 
     where
-        F: FnOnce() + Send + 'static
+        F: FnOnce() + Send + 'static,
     {
         let job: Box<F> = Box::new(f);
         self.sender.send(job).unwrap();
@@ -53,7 +53,8 @@ impl Worker {
                 .recv()
                 .unwrap();
 
-            println!("New Job:\nThread: {}", id);            
+            job();
+            println!("New Job:\nWorker: {}", id);            
          });
 
         Worker { id, thread }
