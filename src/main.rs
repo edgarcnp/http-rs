@@ -1,5 +1,4 @@
-use std::time::Duration;
-use std::{fs, thread};
+use std::fs;
 use std::net::{TcpListener, TcpStream};
 use std::io::prelude::*;
 use http_rs::ThreadPool;
@@ -17,7 +16,6 @@ fn handle_connection(mut stream: TcpStream) {
         if buffer.starts_with(get) {
             ("HTTP/1.1 200 OK", "index.html")
         } else if buffer.starts_with(sleep) {
-            thread::sleep(Duration::from_secs(5));
             ("HTTP/1.1 200 OK", "index.html")
         } else {
             ("HTTP/1.1 404 NOT FOUND", "404.html")

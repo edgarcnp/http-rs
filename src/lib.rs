@@ -1,4 +1,4 @@
-use std::{sync::{mpsc::{self, Receiver, Sender}, Arc, Mutex}, thread::{self, JoinHandle}};
+use std::{sync::{mpsc::{self, Receiver}, Arc, Mutex}, thread::{self, JoinHandle}};
 
 pub struct ThreadPool {
     workers: Vec<Worker>,
@@ -53,7 +53,7 @@ impl Worker {
                 .recv()
                 .unwrap();
 
-            println!("New Job: Worker {}", id);            
+            println!("New Job:\nThread: {}", id);            
          });
 
         Worker { id, thread }
